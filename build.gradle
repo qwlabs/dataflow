@@ -13,7 +13,6 @@ subprojects {
     apply plugin: 'java-library'
     apply from: "${rootProject.rootDir}/gradle/version.gradle"
     apply from: "${rootProject.rootDir}/gradle/reversion.gradle"
-    apply from: "${rootProject.rootDir}/gradle/bom.gradle"
     apply from: "${rootProject.rootDir}/gradle/lombok.gradle"
     apply from: "${rootProject.rootDir}/gradle/publication.gradle"
 
@@ -37,7 +36,7 @@ subprojects {
     }
 
     dependencies {
-        testImplementation "org.mockito:mockito-junit-jupiter"
+        testImplementation "org.mockito:mockito-junit-jupiter:${mockitoVersion}"
     }
 
     testing {
