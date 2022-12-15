@@ -1,0 +1,50 @@
+buildscript {
+    repositories {
+        mavenCentral()
+        mavenLocal()
+    }
+}
+
+plugins {
+    id 'org.ajoberstar.grgit' apply false
+}
+
+subprojects {
+    apply plugin: 'java-library'
+    apply from: "${rootProject.rootDir}/gradle/version.gradle"
+    apply from: "${rootProject.rootDir}/gradle/reversion.gradle"
+    apply from: "${rootProject.rootDir}/gradle/bom.gradle"
+    apply from: "${rootProject.rootDir}/gradle/lombok.gradle"
+    apply from: "${rootProject.rootDir}/gradle/publication.gradle"
+
+    repositories {
+        mavenCentral()
+        mavenLocal()
+    }
+
+    compileJava {
+        options.encoding = 'UTF-8'
+        options.compilerArgs << '-parameters'
+    }
+
+    compileTestJava {
+        options.encoding = 'UTF-8'
+    }
+
+    java {
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
+    }
+
+    dependencies {
+        testImplementation "org.mockito:mockito-junit-jupiter"
+    }
+
+    testing {
+        suites {
+            test {
+                useJUnitJupiter("${jUnitVersion}")
+            }
+        }
+    }
+}

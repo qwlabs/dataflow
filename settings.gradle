@@ -1,0 +1,15 @@
+pluginManagement {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+    plugins {
+        id "${grgitPluginId}" version "${grgitPluginVersion}"
+        id "${lombokPluginId}" version "${lombokPluginVersion}"
+    }
+}
+
+rootProject.name = 'dataflow'
+include 'dataflow-functions'
+include 'dataflow-core'

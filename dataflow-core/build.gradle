@@ -1,0 +1,14 @@
+dependencies {
+    api "org.apache.flink:flink-java"
+    api "org.apache.flink:flink-shaded-guava"
+    api "org.apache.flink:flink-table-api-java"
+    api "org.apache.flink:flink-streaming-java"
+    api "org.apache.flink:flink-table-api-java-bridge"
+    api "org.apache.flink:flink-table-planner-loader"
+    api "org.apache.flink:flink-table-runtime"
+    api "org.apache.flink:flink-clients"
+    api "org.apache.logging.log4j:log4j-api"
+    api "org.apache.logging.log4j:log4j-core"
+    api "org.apache.logging.log4j:log4j-slf4j-impl"
+    api "org.slf4j:slf4j-log4j12"
+}
