@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * @see https://github.com/ververica/flink-cdc-connectors
+ * https://github.com/ververica/flink-cdc-connectors
  */
 public class ConnectorAllowOptions {
     private static final Set<String> JDBC_ALLOW_OPTIONS = Set.of(

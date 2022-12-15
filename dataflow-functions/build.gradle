@@ -1,5 +1,5 @@
 
 dependencies {
-    implementation "org.apache.flink:flink-table-common"
+    implementation "org.apache.flink:flink-table-common:${flinkVersion}"
 }
 
