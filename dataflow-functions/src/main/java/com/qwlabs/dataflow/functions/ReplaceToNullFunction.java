@@ -5,6 +5,7 @@ import lombok.Builder;
 import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
 import org.apache.flink.table.functions.ScalarFunction;
 
+import java.io.Serializable;
 import java.util.Set;
 
 public class ReplaceToNullFunction extends ScalarFunction {
@@ -45,7 +46,7 @@ public class ReplaceToNullFunction extends ScalarFunction {
 
     @Builder
     @AllArgsConstructor
-    public static class Options {
+    public static class Options implements Serializable {
         @Builder.Default
         private final String name = NAME;
         @Builder.Default

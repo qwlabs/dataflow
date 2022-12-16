@@ -6,6 +6,8 @@ import lombok.Builder;
 import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
 import org.apache.flink.table.functions.TableFunction;
 
+import java.io.Serializable;
+
 public class SplitFunction extends TableFunction<String> {
     public static final String NAME = "$split";
     private final Options options;
@@ -33,7 +35,7 @@ public class SplitFunction extends TableFunction<String> {
 
     @AllArgsConstructor
     @Builder
-    public static class Options {
+    public static class Options implements Serializable {
         @Builder.Default
         private final String name = NAME;
     }
