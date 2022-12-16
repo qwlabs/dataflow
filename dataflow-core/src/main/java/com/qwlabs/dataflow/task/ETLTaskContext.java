@@ -1,6 +1,7 @@
 package com.qwlabs.dataflow.task;
 
 import com.qwlabs.dataflow.Configs;
+import org.apache.flink.api.java.utils.ParameterTool;
 import org.apache.flink.shaded.guava30.com.google.common.base.Suppliers;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.table.api.bridge.java.StreamStatementSet;
@@ -45,5 +46,9 @@ public class ETLTaskContext {
 
     private StreamStatementSet setupStatements() {
         return getTableEnv().createStatementSet();
+    }
+
+    public ParameterTool taskConfig(Class<? extends ETLTask> clazz) {
+        return getConfigs().load(clazz.getSimpleName());
     }
 }
