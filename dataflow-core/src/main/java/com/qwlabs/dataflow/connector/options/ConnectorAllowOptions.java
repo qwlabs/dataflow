@@ -8,7 +8,7 @@ import java.util.Set;
 /**
  * https://github.com/ververica/flink-cdc-connectors
  */
-public class ConnectorAllowOptions {
+public final class ConnectorAllowOptions {
     private static final Set<String> JDBC_ALLOW_OPTIONS = Set.of(
         "url",
         "table-name",
@@ -182,6 +182,9 @@ public class ConnectorAllowOptions {
         KnownConnectors.TIDB_CDC, TIDB_CDC_ALLOW_OPTIONS,
         KnownConnectors.DB2_CDC, DB2_CDC_ALLOW_OPTIONS
     );
+
+    private ConnectorAllowOptions() {
+    }
 
     public static Set<String> get(String connector) {
         return ALLOW_OPTIONS_MAPPING.get(connector);

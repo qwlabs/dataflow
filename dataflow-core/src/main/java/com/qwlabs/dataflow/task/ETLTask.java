@@ -3,7 +3,9 @@ package com.qwlabs.dataflow.task;
 import com.qwlabs.dataflow.Configs;
 import com.qwlabs.dataflow.TableConfigs;
 
+@SuppressWarnings("checkstyle:VisibilityModifier")
 public abstract class ETLTask {
+
     protected ETLTaskContext context;
 
     public ETLTask(String[] args) {

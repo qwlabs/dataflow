@@ -6,6 +6,8 @@ import org.apache.flink.table.api.TableConfig;
 import java.util.function.Supplier;
 
 public final class TableConfigs {
+    private TableConfigs() {
+    }
 
     public static void setTaskName(TableConfig tableConfig, String name) {
         tableConfig.set(PipelineOptions.NAME, name);

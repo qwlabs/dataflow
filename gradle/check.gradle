@@ -1,0 +1,28 @@
+apply plugin: 'checkstyle'
+apply plugin: 'project-report'
+
+checkstyle {
+    toolVersion = checkstyleToolVersion
+}
+
+checkstyleMain {
+    configFile = file("${rootProject.projectDir}/gradle/config/checkstyle/checkstyle.xml")
+}
+
+checkstyleTest {
+    configFile = file("${rootProject.projectDir}/gradle/config/checkstyle/checkstyle-test.xml")
+}
+
+task checkstyle(dependsOn: [checkstyleMain, checkstyleTest]) {
+}
+
+test {
+    useJUnitPlatform()
+    systemProperties['junit.jupiter.execution.parallel.enabled'] = true
+    maxParallelForks = Runtime.runtime.availableProcessors().intdiv(2) ?: 1
+    forkEvery = 1
+}
+
+task prepush(dependsOn: ["checkstyle", test, check]) {
+}
+prepush.mustRunAfter clean

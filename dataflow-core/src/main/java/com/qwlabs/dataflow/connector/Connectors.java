@@ -11,11 +11,15 @@ import java.util.Optional;
 import java.util.Set;
 
 @Slf4j
-public class Connectors {
+public final class Connectors {
+
     private static final String SOURCE_PREFIX_TEMPLATE = "%s.source";
     private static final String SINK_PREFIX_TEMPLATE = "%s.sink";
     private static final String CONNECTOR_KEY = "connector";
     private static final String DEFAULT_CONNECTOR = KnownConnectors.JDBC;
+
+    private Connectors() {
+    }
 
     public static TableDescriptor.Builder describe(Configs configs, String prefix, ConnectorContext context) {
         return describe(configs, prefix, context, null);

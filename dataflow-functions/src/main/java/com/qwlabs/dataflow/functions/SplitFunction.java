@@ -1,10 +1,18 @@
 package com.qwlabs.dataflow.functions;
 
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import org.apache.flink.table.api.bridge.java.StreamTableEnvironment;
 import org.apache.flink.table.functions.TableFunction;
 
 public class SplitFunction extends TableFunction<String> {
-    public static final String DEFAULT_NAME = "$split";
+    public static final String NAME = "$split";
+    private final Options options;
+
+    public SplitFunction(Options options) {
+        this.options = options;
+    }
 
     public void eval(String value, String regex) {
         if (value == null) {
@@ -14,4 +22,20 @@ public class SplitFunction extends TableFunction<String> {
             collect(s);
         }
     }
+
+    public static void register(StreamTableEnvironment tableEnv) {
+        register(tableEnv, Options.builder().build());
+    }
+
+    public static void register(StreamTableEnvironment tableEnv, Options options) {
+        tableEnv.createTemporarySystemFunction(options.name, new SplitFunction(options));
+    }
+
+    @AllArgsConstructor
+    @Builder
+    public static class Options {
+        @Builder.Default
+        private final String name = NAME;
+    }
+
 }

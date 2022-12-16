@@ -8,7 +8,9 @@ import javax.annotation.Nonnull;
 import java.util.Arrays;
 import java.util.List;
 
-public class CDCSlotNames {
+public final class CDCSlotNames {
+    private CDCSlotNames() {
+    }
 
     public static String of(@Nonnull Class<?> clazz, String... suffixs) {
         return of(StringUtils.lowerCase(clazz.getSimpleName()), suffixs);

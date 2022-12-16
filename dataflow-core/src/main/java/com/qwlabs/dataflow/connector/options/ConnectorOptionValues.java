@@ -5,10 +5,13 @@ import org.apache.flink.api.java.utils.ParameterTool;
 
 import java.util.List;
 
-public class ConnectorOptionValues {
+public final class ConnectorOptionValues {
     private static final List<OptionValueProvider> PROVIDERS = initProcessors();
     private static final OptionValueProvider DEFAULT_PROVIDER = new OptionValueProvider() {
     };
+
+    private ConnectorOptionValues() {
+    }
 
     private static List<OptionValueProvider> initProcessors() {
         return List.of(new RuntimeOptionValueProvider());
