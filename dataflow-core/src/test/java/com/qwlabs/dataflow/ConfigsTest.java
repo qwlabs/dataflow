@@ -8,7 +8,7 @@ public class ConfigsTest {
     @Test
     void should_load_root() {
         var pt = Configs.of().load();
-        assertEquals(pt.toMap().size(), 32);
+        assertEquals(pt.toMap().size(), 33);
     }
 
     @Test
@@ -26,5 +26,12 @@ public class ConfigsTest {
         assertEquals(pt.toMap().size(), 8);
         assertEquals(pt.get("url"), "jdbc:postgresql://localhost:5432/comac_app");
         assertEquals(pt.get("connector"), "jdbc");
+    }
+
+    @Test
+    void should_load_by_profile() {
+        var pt = Configs.of(new String[]{"--profile", "prod"}).load("comac.airline.source");
+        assertEquals(pt.toMap().size(), 13);
+        assertEquals(pt.get("hostname"), "192.168.3.16");
     }
 }

@@ -32,9 +32,8 @@ public class Configs {
             .mergeWith(load(args.profile(), prefix));
     }
 
-    private ParameterTool load(@Nullable String profile, @Nullable String prefix) {
-        final var startPrefix = Joiner.on(".").skipNulls().join(Arrays.asList(profile, prefix));
-        return ptCache.computeIfAbsent(startPrefix, this::doLoad);
+    public ParameterTool load(@Nullable String profile, @Nullable String prefix) {
+        return ptCache.computeIfAbsent(startPrefix(profile, prefix), this::doLoad);
     }
 
     private ParameterTool doLoad(String prefix) {
@@ -61,7 +60,14 @@ public class Configs {
             return;
         }
         Splitter.on(",").split(configTemplate)
-            .forEach(template -> parameters.putAll(doLoad(template).toMap()));
+            .forEach(template -> {
+                parameters.putAll(doLoad(startPrefix(null, template)).toMap());
+                parameters.putAll(doLoad(startPrefix(args.profile(), template)).toMap());
+            });
+    }
+
+    private String startPrefix(@Nullable String profile, @Nullable String prefix) {
+        return Joiner.on(".").skipNulls().join(Arrays.asList(profile, prefix));
     }
 
     protected static Configs of() {
